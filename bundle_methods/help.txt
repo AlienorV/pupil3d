@@ -1,0 +1,11 @@
+--photos=<text file with a list of photos or a directory with photos>
+	The only obligatory option
+
+--featureExtractor=<name of feature extractor, default value is siftvlfeat>
+	Many feature extractors are supported at the moment: siftvlfeat from VLFeat library, siftvlfeat2 (different version) and surfcv from the OpenCV library.  Both write .key files in David Lowe's .key format.  
+
+--help
+	Print help and exit
+
+--maxPhotoDimension=<maximum of width and height>
+	Copy of a photo will be scaled down if either width or height exceeds <maxPhotoDimension>. After scaling the maximum of width and height will be equal to <maxPhotoDimension>

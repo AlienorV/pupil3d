@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# ToSift.sh
+# Create a script for extracting sift features from a set of images
+
+# Set this variable to your base install path (e.g., /home/foo/bundler)
+BASE_PATH="/Volumes/HD_Two/Users/Will/Documents/2012/MIT/Thesis/Repository/trunk/Software/Structure_From_Motion/bundler-v0.4-source"
+
+
+if [ $BASE_PATH == "TODO" ]
+then
+    echo "Please modify this script (ToSift.sh) with the base path of your bundler installation.";
+    exit;
+fi
+
+IMAGE_DIR=`pwd`
+
+if [ $# -eq 1 ]
+then
+    IMAGE_DIR=$1
+fi
+
+SIFT=$BASE_PATH/bin/sift
+
+
+
+for d in `ls -1 $IMAGE_DIR | egrep "jpg$"`
+do 
+    pgm_file=$IMAGE_DIR/`echo $d | sed 's/jpg$/pgm/'`
+    key_file=$IMAGE_DIR/`echo $d | sed 's/jpg$/key/'`
+#    echo "mogrify -format pgm $IMAGE_DIR/$d; $SIFT < $pgm_file > $key_file; rm $pgm_file; gzip $key_file"
+#    echo "mogrify -format pgm $IMAGE_DIR/$d; $SIFT --verbose $pgm_file; rm $pgm_file; gzip $key_file"
+    echo "$BASE_PATH/bin/DoSift.sh $IMAGE_DIR/$d $SIFT $pgm_file $key_file"
+done
